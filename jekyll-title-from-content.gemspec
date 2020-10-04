@@ -5,7 +5,7 @@ require "jekyll-title-from-content/version"
 
 Gem::Specification.new do |s|
   s.name          = "jekyll-title-from-content"
-  s.version       = JekyllTitlesFromContent::VERSION
+  s.version       = JekyllTitleFromContent::VERSION
   s.authors       = ["Colin Seymour"]
   s.email         = ["colin@symr.io"]
   s.homepage      = "https://github.com/lildude/jekyll-title-from-content"
