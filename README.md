@@ -46,3 +46,8 @@ Since collection items (including posts) already have a title inferred from thei
 ### Disabling
 
 Even if the plugin is enabled (e.g., via the `:jekyll_plugins` group in your Gemfile) you can disable it by setting the `enabled` key to `false`.
+
+### Credit
+
+This plugin is heavily inspired by the [jekyll-titles-from-headings](https://github.com/benbalter/jekyll-titles-from-headings) plugin.
+
