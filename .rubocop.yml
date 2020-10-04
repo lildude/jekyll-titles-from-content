@@ -1,0 +1,7 @@
+require: rubocop-jekyll
+inherit_gem:
+  rubocop-jekyll: .rubocop.yml
+
+AllCops:
+  Exclude:
+    - vendor/**/*
