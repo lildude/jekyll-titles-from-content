@@ -17,7 +17,11 @@ Gem::Specification.new do |s|
   s.license       = "MIT"
 
   s.add_dependency "jekyll", ">= 3.3", "< 5.0"
+  s.add_development_dependency "guard"
+  s.add_development_dependency "guard-minitest"
   s.add_development_dependency "minitest"
+  s.add_development_dependency "minitest-color"
+  s.add_development_dependency "rake"
   s.add_development_dependency "rubocop", "~> 0.71"
   s.add_development_dependency "rubocop-jekyll", "~> 0.10"
   s.add_development_dependency "simplecov", "~> 0.19"
