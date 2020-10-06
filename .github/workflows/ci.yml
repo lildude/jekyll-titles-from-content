@@ -1,0 +1,34 @@
+name: Testing
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        jekyll: [ '~> 3.0', '~> 4.0' ]
+    steps:
+    - uses: actions/checkout@master
+    - name: Cache Ruby Gems
+      uses: actions/cache@preview
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-${{ matrix.jekyll }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.jekyll }}-gem-
+    - name: Set up Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+    - name: Install Dependencies
+      env:
+        JEKYLL_VERSION: ${{ matrix.jekyll }}
+      run: |
+        gem install bundler --no-document
+        bundle install --jobs 4 --local --deployment
+    - name: Run tests
+      run: bundle exec rake test
+    - name: Run linter
+      run: bundle exec rake rubocop
