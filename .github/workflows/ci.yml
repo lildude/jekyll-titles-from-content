@@ -9,6 +9,7 @@ jobs:
       fail-fast: true
       matrix:
         jekyll: [ '~> 3.0', '~> 4.0' ]
+    name: Jekyll ${{ matrix.jekll }}
     steps:
     - uses: actions/checkout@master
     - name: Cache Ruby Gems
