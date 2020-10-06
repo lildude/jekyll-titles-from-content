@@ -34,6 +34,14 @@ class TestJekyllTitlesFromContentGenerator < JekyllUnitTest
     assert_instance_of Jekyll::Converters::Markdown, @gen.markdown_converter
   end
 
+  def test_truncates_text_based_on_opts
+    str = "This string has a lot of words and is quite long"
+    assert_equal "This string has", @gen.truncate(str, 3)
+    assert_equal "This string has a lot", @gen.truncate(str, 5, "")
+    assert_equal "This string has a lot of words...", @gen.truncate(str, 7, "...")
+    assert_equal "This string has a lot of words and is quite long", @gen.truncate(str, 50, "")
+  end
+
   def test_should_not_add_title_to_page_with_title
     refute @gen.should_add_title?(page_by_path(@site, "page-with-title.md"))
   end
@@ -64,8 +72,14 @@ class TestJekyllTitlesFromContentGenerator < JekyllUnitTest
     assert_equal "This 😄 is an emoji", @gen.title_for(page_by_path(@site, "page-with-emoji.md"))
   end
 
+  def test_pulls_title_with_many_blank_lines_first
+    assert_equal "Text after seven blank lines", @gen.title_for(
+      page_by_path(@site, "page-with-many-empty-lines-first.md")
+    )
+  end
+
   def test_pulls_title_from_text_after_image_without_alt
-    assert_equal "T'is the content after photo", @gen.title_for(
+    assert_equal "T’is the content after photo", @gen.title_for(
       page_by_path(@site, "page-with-no-alt-img-firstline.md")
     )
   end
@@ -106,7 +120,7 @@ class TestJekyllTitlesFromContentGeneratorProcessedDefaultConfig < JekyllUnitTes
   end
 
   def test_does_not_error_on_pages_without_content
-    assert_equal "", page_by_path(@site, "page-without-content.md").data["title"]
+    assert_nil page_by_path(@site, "page-without-content.md").data["title"]
   end
 end
 

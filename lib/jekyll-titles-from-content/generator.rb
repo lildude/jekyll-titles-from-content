@@ -55,16 +55,20 @@ module JekyllTitlesFromContent
       @markdown_converter ||= site.find_converter_instance(CONVERTER_CLASS)
     end
 
+    def truncate(string, count, cont = "")
+      spl = string.split
+      tr = spl.first(count).join(" ")
+      tr += cont if spl.length > count
+      tr
+    end
+
     def title_for(document)
       return document.data["title"] if title?(document)
 
-      first_line = strip_markup(document.content.split("\n").first.to_s)
-      split_line = first_line.split
-      new_title = split_line.first(count).join(" ")
-      new_title += dotdotdot if split_line.length > count
-      return new_title if new_title
+      first_line = document.content.split("\n").find { |l| l unless strip_markup(l).empty? }
+      return truncate(strip_markup(first_line), count, dotdotdot) unless first_line.nil?
 
-      document.data["title"] # If we cant match a title, we use the inferred one.
+      document.data["title"] # If we can't produce a title, we use the inferred one.
     rescue ArgumentError => e
       raise e unless e.to_s.start_with?("invalid byte sequence in UTF-8")
     end
