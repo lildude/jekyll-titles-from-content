@@ -16,9 +16,9 @@ jobs:
       uses: actions/cache@preview
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-${{ matrix.jekyll }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        key: ${{ runner.os }}-jekyll-${{ matrix.jekyll }}-gem-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-${{ matrix.jekyll }}-gem-
+          ${{ runner.os }}-jekyll-${{ matrix.jekyll }}-gem-
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
