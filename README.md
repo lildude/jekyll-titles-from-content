@@ -31,7 +31,7 @@ Because lots of plugins and templates rely on `page.title`. This doesn't play ni
 Configuration options are optional and placed in `_config.yml` under the `titles_from_content` key. They default to:
 
 ```yml
-title_from_content:
+titles_from_content:
   enabled:     true
   words:       5
   collections: true
