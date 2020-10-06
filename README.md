@@ -1,10 +1,10 @@
 # Jekyll Titles from Content
 
-A Jekyll plugin to pull the page title from the first X words of the first line of the content, when none is specified.
+A Jekyll plugin to pull the page title from the first few words of the first line of the content if a title isn't set.
 
 ## What it does
 
-If you have a Jekyll page that doesn't have a title specified in the YAML Front Matter, this plugin instructs Jekyll to use that first X words of the content as the page's title.
+If you have a Jekyll page that doesn't have a title specified in the YAML Front Matter, this plugin instructs Jekyll to use that first few words of the content as the page's title.
 
 ## Why
 
@@ -24,6 +24,7 @@ Because lots of plugins and templates rely on `page.title`. This doesn't play ni
   plugins:
     - jekyll-titles-from-content
   ```
+
   Note: If you are using a Jekyll version less than 3.5.0, use the `gems` key instead of `plugins`.
 
 ## Configuration
@@ -32,9 +33,10 @@ Configuration options are optional and placed in `_config.yml` under the `titles
 
 ```yml
 titles_from_content:
-  enabled:     true
-  words:       5
-  collections: true
+  enabled:     true    # Easily toggle the plugin from your configuration.
+  words:       5       # The number of words to use for the title.
+  collections: true    # Apply the plugin to collections. Posts are collections.
+  dotdotdot:   ...     # The character(s) you'd like to append to truncated titles.
 ```
 
 ### Processing Collections
@@ -50,5 +52,3 @@ Even if the plugin is enabled (e.g., via the `:jekyll_plugins` group in your Gem
 ### Credit
 
 This plugin is heavily inspired by the [jekyll-titles-from-headings](https://github.com/benbalter/jekyll-titles-from-headings) plugin.
-
-http://osfameron.github.io/jekyll-plugins-tutorial/2015/12/05/jekyll-plugins-tutorial-part-2.html
