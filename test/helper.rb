@@ -3,7 +3,11 @@
 $LOAD_PATH.unshift(File.join(__dir__, "..", "lib"))
 $LOAD_PATH.unshift(__dir__)
 require "simplecov"
-SimpleCov.start
+SimpleCov.start do
+  add_filter "/docs/"
+  add_filter "/test/"
+  add_filter "/vendor/"
+end
 
 require "jekyll"
 require "jekyll-titles-from-content"
