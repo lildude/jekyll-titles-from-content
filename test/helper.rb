@@ -37,5 +37,4 @@ class JekyllUnitTest < Minitest::Test
   def doc_by_path(site, path)
     site.documents.find { |p| p.relative_path == path }
   end
-
 end

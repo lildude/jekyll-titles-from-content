@@ -12,7 +12,6 @@ class TestJekyllTitlesFromContentContext < JekyllUnitTest
   end
 
   def test_returns_the_registers
-
     assert_kind_of Hash, @ctx.registers
     assert @ctx.registers[:site]
     assert_instance_of Jekyll::Site, @ctx.registers[:site]
