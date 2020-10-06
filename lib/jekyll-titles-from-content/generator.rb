@@ -60,10 +60,10 @@ module JekyllTitlesFromContent
       return document.data["title"] if title?(document)
 
       first_line = strip_markup(document.content.split("\n").first.to_s)
-      new_title = first_line.split.first(count).join(" ")
-      Jekyll.logger.info "=> #{new_title}"
-      return new_title + dotdotdot if new_title
-
+      split_line = first_line.split
+      new_title = split_line.first(count).join(" ")
+      new_title += dotdotdot if split_line.length > count
+      return new_title if new_title
 
       document.data["title"] # If we cant match a title, we use the inferred one.
     rescue ArgumentError => e
