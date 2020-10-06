@@ -28,7 +28,6 @@ module JekyllTitlesFromContent
       @site = site
       return if disabled?
 
-      Jekyll.logger.debug "Titles from content: Settings titles when there aren't any"
       documents = site.pages
       documents = site.pages + site.docs_to_write if collections?
 
