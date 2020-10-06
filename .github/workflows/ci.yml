@@ -28,7 +28,7 @@ jobs:
         JEKYLL_VERSION: ${{ matrix.jekyll }}
       run: |
         gem install bundler --no-document
-        bundle install --jobs 4 --local
+        bundle install --jobs 4
     - name: Run tests
       run: bundle exec rake test
     - name: Run linter
