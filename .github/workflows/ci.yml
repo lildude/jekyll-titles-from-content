@@ -11,9 +11,9 @@ jobs:
       matrix:
         jekyll: [ '3.0', '4.0' ]
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Cache Ruby Gems
-      uses: actions/cache@preview
+      uses: actions/cache@v2
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-jekyll-${{ matrix.jekyll }}-gem-${{ hashFiles('**/Gemfile.lock') }}
