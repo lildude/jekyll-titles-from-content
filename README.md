@@ -1,4 +1,4 @@
-# Jekyll Title from Content
+# Jekyll Titles from Content
 
 A Jekyll plugin to pull the page title from the first X words of the content, when none is specified.
 
@@ -15,14 +15,14 @@ Because lots of plugins and templates rely on `page.title`. This doesn't play ni
 1. Add the following to your site's Gemfile:
 
   ```ruby
-  gem 'jekyll-title-from-content'
+  gem 'jekyll-titles-from-content'
   ```
 
 2. Add the following to your site's config file:
 
   ```yml
   plugins:
-    - jekyll-title-from-content
+    - jekyll-titles-from-content
   ```
   Note: If you are using a Jekyll version less than 3.5.0, use the `gems` key instead of `plugins`.
 
@@ -51,3 +51,4 @@ Even if the plugin is enabled (e.g., via the `:jekyll_plugins` group in your Gem
 
 This plugin is heavily inspired by the [jekyll-titles-from-headings](https://github.com/benbalter/jekyll-titles-from-headings) plugin.
 
+http://osfameron.github.io/jekyll-plugins-tutorial/2015/12/05/jekyll-plugins-tutorial-part-2.html
