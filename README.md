@@ -1,6 +1,6 @@
 # Jekyll Titles from Content
 
-A Jekyll plugin to pull the page title from the first X words of the content, when none is specified.
+A Jekyll plugin to pull the page title from the first X words of the first line of the content, when none is specified.
 
 ## What it does
 
