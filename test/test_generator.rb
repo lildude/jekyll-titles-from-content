@@ -2,7 +2,7 @@
 
 require "helper"
 
-class TestJekyllTitlesFromContentGenerator < JekyllUnitTest
+class TestJekyllTitlesFromContentGeneratorDefault < JekyllUnitTest
   def setup
     @site = fixture_site
     @site.reset
@@ -102,6 +102,19 @@ class TestJekyllTitlesFromContentGenerator < JekyllUnitTest
   end
 end
 
+class TestJekyllTitlesFromContentGeneratorCollections < JekyllUnitTest
+  def setup
+    @site = fixture_site("titles_from_content" => { "collections" => true })
+    @site.reset
+    @site.read
+    @gen = JekyllTitlesFromContent::Generator.new(@site)
+  end
+
+  def test_should_not_add_title_to_document_with_title
+    refute @gen.should_add_title?(doc_by_path(@site, "_posts/2010-01-14-post-with-title.md"))
+  end
+end
+
 class TestJekyllTitlesFromContentGeneratorProcessedDefaultConfig < JekyllUnitTest
   def setup
     @site = fixture_site
@@ -138,8 +151,14 @@ class TestJekyllTitlesFromContentGeneratorProcessedCustomConfig < JekyllUnitTest
     @site.process
   end
 
+  def test_custom_respects_document_yaml_title
+    title = doc_by_path(@site, "_posts/2010-01-14-post-with-title.md").data["title"]
+    assert_equal "Post with title", title
+  end
+
   def test_replaces_auto_title_on_documents
     title = doc_by_path(@site, "_posts/2020-01-20-test.md").data["title"]
+      .dup.force_encoding("UTF-8")
     refute_equal "Test", title
     assert_equal "Plain text longer...", title
   end

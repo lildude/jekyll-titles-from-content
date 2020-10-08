@@ -102,13 +102,40 @@ module JekyllTitlesFromContent
     end
 
     # Documents (posts and collection items) have their title inferred from the filename.
-    # We want to override these titles, because they were not explicitly set.
+    #
+    # This is a terribly slow hack as we're reading the YAML for every document, but I can't find
+    # a better way of doing this as I can't find a method of obtaining the original unprocessed
+    # frontmatter.
     def inferred_title?(document)
-      document.is_a?(Jekyll::Document)
+      return false unless document.is_a?(Jekyll::Document)
+
+      meta = read_yaml(File.dirname(document.path), File.basename(document.path))
+      !meta.key?("title")
     end
 
     def filters
       @filters ||= JekyllTitlesFromContent::Filters.new(site)
+    end
+
+    # This is a slightly modified version of Jekyll::Convertible.read_yaml
+    def read_yaml(base, name)
+      filename = File.join(base, name)
+
+      begin
+        content = File.read(filename)
+        if content =~ Jekyll::Document::YAML_FRONT_MATTER_REGEXP
+          content = $POSTMATCH # rubocop:disable Lint/UselessAssignment
+          data = SafeYAML.load(Regexp.last_match(1))
+        end
+      rescue SyntaxError => e
+        Jekyll.logger.warn "YAML Exception reading #{filename}: #{e.message}"
+        raise e if site.config["strict_front_matter"]
+      rescue StandardError => e
+        Jekyll.logger.warn "Error reading file #{filename}: #{e.message}"
+        raise e if site.config["strict_front_matter"]
+      end
+
+      data || {}
     end
   end
 end
