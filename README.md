@@ -1,5 +1,7 @@
 # Jekyll Titles from Content
 
+[![Actions Status](https://github.com/lildude/jekyll-titles-from-content/workflows/Testing/badge.svg)](https://github.com/lildude/jekyll-titles-from-content/actions)
+
 A Jekyll plugin to pull the page title from the first few words of the first line of the content if a title isn't set.
 
 ## What it does
