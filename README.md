@@ -37,8 +37,8 @@ Configuration options are optional and placed in `_config.yml` under the `titles
 titles_from_content:
   enabled:     true    # Easily toggle the plugin from your configuration.
   words:       5       # The number of words to use for the title.
-  collections: true    # Apply the plugin to collections. Posts are collections.
-  dotdotdot:   ...     # The character(s) you'd like to append to truncated titles.
+  collections: false   # Apply the plugin to collections. Posts are collections.
+  dotdotdot:   ""      # The character(s) you'd like to append to truncated titles.
 ```
 
 ### Processing Collections
