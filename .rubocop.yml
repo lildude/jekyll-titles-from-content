@@ -3,5 +3,6 @@ inherit_gem:
   rubocop-jekyll: .rubocop.yml
 
 AllCops:
+  TargetRubyVersion: 2.5
   Exclude:
     - vendor/**/*

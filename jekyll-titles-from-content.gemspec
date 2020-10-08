@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.license       = "MIT"
 
-  s.required_ruby_version     = ">= 2.4.0"
+  s.required_ruby_version     = ">= 2.5.0"
   s.required_rubygems_version = ">= 2.7.0"
 
   s.add_dependency "jekyll", ">= 3.3", "< 5.0"
@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "minitest-color"
   s.add_development_dependency "rake"
   s.add_development_dependency "rubocop", "~> 0.71"
-  s.add_development_dependency "rubocop-jekyll", "~> 0.10"
+  s.add_development_dependency "rubocop-jekyll", "~> 0.11"
   s.add_development_dependency "simplecov", "~> 0.19"
 end
