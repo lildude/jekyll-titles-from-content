@@ -10,11 +10,14 @@ Gem::Specification.new do |s|
   s.email         = ["colin@symr.io"]
   s.homepage      = "https://github.com/lildude/jekyll-titles-from-content"
   s.summary       = "A Jekyll plugin to pull the page title from the first " \
-                    "X words of the content, when none is specified."
+                    "few words of the first line of the content if a title isn't set."
   s.files         = `git ls-files lib *.md`.split("\n")
   s.platform      = Gem::Platform::RUBY
   s.require_paths = ["lib"]
   s.license       = "MIT"
+
+  s.required_ruby_version     = ">= 2.4.0"
+  s.required_rubygems_version = ">= 2.7.0"
 
   s.add_dependency "jekyll", ">= 3.3", "< 5.0"
   s.add_development_dependency "guard"
